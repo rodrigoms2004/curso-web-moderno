@@ -1,0 +1,5 @@
+em funcao tradicional o this varia dependendo de quem chama
+
+this não varia quando usa arrow function
+
+padrão de projeto mais usado na web é o observer, ou popularmente callback
