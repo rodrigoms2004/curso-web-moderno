@@ -28,7 +28,6 @@ function criarFuncionario(nome, salarioBase, faltas) {
         getSalario() {
             return (salarioBase / 30) * (30 - faltas)
         }
-
     }
 }
 
