@@ -11,4 +11,4 @@ https://sailsjs.com/
 https://koajs.com/
 
 
-Aula 131 Express, padrão chain of responsability, middleware
+Aulas 131 e 132 Express, padrão chain of responsability, middleware
