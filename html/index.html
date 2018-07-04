@@ -1,10 +1,27 @@
-<<!DOCTYPE html>
+<!-- 
+    npm i -g http-server
+    http-server .
+    or
+    http-server -p 8082
+
+    Escuta na porta 8080 com cache desabilitado
+    http-server -c-1 -p 8080 .
+    Escuta na porta 8080 com cache por 10 segundos
+    http-server -c10 -p 8080 .
+-->
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Exercícios HTML</title>
+    <style>
+        #conteudo {
+            padding: 30px 0px;  /* 30 px em cima, 30 px em baixo e 0 px dos lados*/
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -12,11 +29,13 @@
     </header>
     <nav>
         <a href wm-nav="exercicios/teste.html">00 - Teste</a> |
-        <a href wm-nav="exercicios/temp.html">TEMPPPP</a>
+        <a href wm-nav="exercicios/texto1.html">01 - Texto 1</a> |
+        <a href wm-nav="exercicios/texto2.html">02 - Texto 2</a> |
+        <a href wm-nav="exercicios/listas.html">03 - Listas</a> |
+        <a href wm-nav="exercicios/listaAninhada.html">04 - Lista Aninhada</a> |
     </nav>
     <section id="conteudo" ></section>
     <footer>
-        <br>
         Curso de Web Moderno
     </footer>
     <script>
