@@ -6,7 +6,32 @@
     <title>CSS Selectors</title>
     <link rel="stylesheet" href="css/tag.css">
     <style>
-        /* ... */
+            /* 
+            
+            Seletores: * (tudo), .tag, #aprovados (id), 
+            #aninhado > div (aplica CSS somente filho direto)
+            #aninhado  section (aplica CSSqualquer descendente)
+            p + ul (aplica CSS na ul que vem diretamente depois de p)
+            p + ol (não funciona, porque não são adjacentes
+            p ~ ol (funciona, irmãos gerais)
+            [feira] (seletor de propriedade)
+            [feira=casa] (aplica CSS nos elementos com o valor da propriedade feita = casa)
+            [feira~=escritorio] (aplica CSS na propriedade com valor com espaço, i.e, 'escritorio empresa')
+            [feira*=sa] (aplica se o valor conter string 'sa')
+
+                Colocar a tag 'nolabel' na section
+            span:nth-child(1) (aplica CSS numa tag span que esteja na primeira posição e seja filho numero 1 de outra tag)
+            section > :nth-child(odd) (dentro de uma tag section aplique CSS em todos os filhos impares)
+            section > :nth-child(even) (dentro de uma tag section aplique CSS em todos os filhos pares)
+            section > :nth-child(odd), ul (dentro de uma tag section aplique CSS em todos os filhos impares,
+                                            e nas tags ul também)
+            section > span:nth-of-type(2) (aplique CSS no segundo elemento do tipo span dentro de uma section)
+            */
+
+        section > span:nth-of-type(2) {  
+            color: #ff0;
+            background-color: #f77;
+        }
     </style>
 </head>
 
@@ -29,7 +54,7 @@
             </ol>
             <div id='aninhado' class='tag'>
                 <div class="tag">
-                    <section class='tag'>
+                    <section class='tag nolabel'>
                         <span class='tag'>1</span>
                         <p class='tag'>2</p>
                         <span class='tag'>3</span>

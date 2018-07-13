@@ -131,3 +131,52 @@ URL             |   MÉTODO  |   DESCRIÇÃO
 
 
 Arquiteturas: SOA e Microserviços
+
+########################################################################3
+
+Aula 190 Seletores CSS #01
+
+:Pseudo-Class   ::Pseudo-Elementos
+
+Combinar Seletores:
+
+DIV + P : Adjacent sibling
+DIV ~ P : General sibling
+    Maria é uma irmã adjacente a Pedro (DIV + P), porém
+    Ana não é adjacente a Maria, logo Ana é irmã geral (DIV ~ P) de Maria
+
+            <ol id='aprovados' class='tag'>
+                <li>Maria</li>
+                <li>Pedro</li>
+                <li>Ana</li>
+            </ol>
+
+
+DIV > P : Child
+    a tag <div class="tag"> é filha direta (DIV > P) da tag <div id='aninhado'...>
+    porém <section...> não é um filho direto 
+            <div id='aninhado' class='tag'>
+                <div class="tag">
+                    <section class='tag'>
+                        <span class='tag'>1</span>
+                        <p class='tag'>2</p>
+                        <span class='tag'>3</span>
+                    </section>
+                </div>
+            </div>
+
+DIV P : Descendant
+    qualquer <span...> que esteja dentro de <div id='aninhado'...>
+    pega os elementos <span class='tag'>1</span> e <span class='tag'>3</span>
+
+            <div id='aninhado' class='tag'>
+                <div class="tag">
+                    <section class='tag'>
+                        <span class='tag'>1</span>
+                        <p class='tag'>2</p>
+                        <span class='tag'>3</span>
+                    </section>
+                </div>
+            </div>
+
+DIV , P : aplica CSS a diferentes elementos, independente de relacionamento
