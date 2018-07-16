@@ -6,6 +6,30 @@
     <title>Especificidade CSS</title>
     <style>
         /* https://developer.mozilla.org/pt-BR/docs/Web/CSS/Specificity */
+        /*
+            Em linhas gerais: NaN NaN NaN;
+
+            1. regra com !important (evitar usar)
+            2. seletores mais específicos
+            3. última regra processada (empate)
+        */
+
+        p {
+            background-color: #aaa;
+        }
+
+        .observacao { /* classe é mais especifica que componente*/
+            background-color: #5F5;
+            border: dashed 5px;
+            padding: 200px!important;   /* passar por cima da especificidade */
+            font-size: 40px;
+        }
+
+        p.observacao { /* classe associada a paragrafo, mais especifico */
+            padding: 2px;
+            background: linear-gradient(to right, red, yellow);
+        }
+
     </style>
 </head>
 

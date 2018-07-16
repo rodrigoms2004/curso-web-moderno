@@ -180,3 +180,34 @@ DIV P : Descendant
             </div>
 
 DIV , P : aplica CSS a diferentes elementos, independente de relacionamento
+
+Aula 192 especifidade CSS
+        /* https://developer.mozilla.org/pt-BR/docs/Web/CSS/Specificity */
+        /*
+            Em linhas gerais: NaN NaN NaN;
+
+            1. regra com !important (evitar usar)
+            2. seletores mais específicos
+            3. última regra processada (empate)
+        */
+
+
+Aula 193 especificade CSS 2
+        /* https://specificity.keegan.st/ */
+        /*
+            1. Inline
+            2. ID
+            3. Classe, Pseudo-Classe, atributo
+            4. Elemento, Pseudo-Elementos
+        */
+
+Aula 194 Herança CSS
+https://fonts.google.com/
+
+
+Aula 195 Box model
+padding: a , aplica no topo, embaixo, direita e esquerda
+padding: a a; aplica no topo e depois na direita, aplica embaixo depois da esquerda
+padding: a a a a; topo, direita, embaixo, esquerda (sentido horário)
+
+
