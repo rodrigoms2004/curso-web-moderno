@@ -12,6 +12,21 @@
             border: solid 5px;
             display: none;
         }
+
+        /* só aparece se a largura máxima for de 600 pixels */
+        @media (max-width: 600px) {
+            .muito-pequeno { display: block; }
+        }
+
+        /* largura maior que 1000 pixels ou orientação retrato */
+        @media (max-width: 1000px), (orientation: portrait) {
+            .pequeno-retrato { display: block; }
+        }
+
+        @media (min-width: 500px) and (max-width: 1000px) {
+            .intervalo { display: block; }
+        }
+
     </style>
 </head>
 <body>

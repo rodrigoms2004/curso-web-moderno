@@ -227,3 +227,5 @@ Relativos:
         ex: 10 vh = 10% da altura inteira
             20 vw = 20% da largura inteira
     Font: rem (relativo), em (baseada na tag pai)
+
+Utilizar unidades-relativas, boa prática
