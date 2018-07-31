@@ -36,6 +36,7 @@
             padding: 10px 15px;
         }
         
+        .menu a.selected,
         .menu a:hover {
             background-color: #4faddb;
             color: #000;
@@ -54,6 +55,25 @@
         /* ==================== */
         /* Solução com Flex Box */
         /* ==================== */
+
+        .cabecalho {
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .menu {
+            flex-grow: 10;
+        }
+
+        .menu ul {
+            display: flex;
+            /* justify-content: space-around; */
+        }
+
+        .menu li {
+            margin: 0px 10px;
+        }
     </style>
 </head>
 
@@ -70,6 +90,7 @@
                     <a href="#inicio">Início</a>
                 </li>
                 <li>
+                    <!-- <a href="#cursos" class="selected">Cursos</a> -->
                     <a href="#cursos">Cursos</a>
                 </li>
                 <li>
@@ -85,6 +106,18 @@
             <a href="#registar" class="botao destaque">Registrar</a>
         </aside>
     </header>
+
+    <script>
+        window.onhashchange = function(e) {
+            const oldURL = e.oldURL.split('#')[1] // pega o que estiver depois de #
+            const newURL = e.newURL.split('#')[1]
+            // console.log(oldURL, newURL)
+            const oldLink = document.querySelector(`.menu a[href='#${oldURL}']`)
+            const newLink = document.querySelector(`.menu a[href='#${newURL}']`)
+            oldLink && oldLink.classList.remove('selected')
+            newLink && newLink.classList.add('selected')
+        }
+    </script>
 </body>
 
 </html>
