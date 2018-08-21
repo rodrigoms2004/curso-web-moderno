@@ -229,3 +229,7 @@ Relativos:
     Font: rem (relativo), em (baseada na tag pai)
 
 Utilizar unidades-relativas, boa prática
+
+
+Aula 221
+https://caniuse.com/#feat=css-grid
