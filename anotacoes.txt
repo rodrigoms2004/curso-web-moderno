@@ -233,3 +233,8 @@ Utilizar unidades-relativas, boa prática
 
 Aula 221
 https://caniuse.com/#feat=css-grid
+
+
+####################################################
+DOM Document Object Model
+
