@@ -238,3 +238,11 @@ https://caniuse.com/#feat=css-grid
 ####################################################
 DOM Document Object Model
 
+Aula 230 Acessando atributos
+
+const img = document.querySelector('img')   # seleciona uma tag
+const img = document.querySelector('.img')   # seleciona uma classe
+const img = document.querySelector('#img')   # seleciona um id
+const img = document.querySelector('[img]')   # seleciona uma propriedade
+
+// https://www.w3schools.com/jsref/prop_node_nodetype.asp
