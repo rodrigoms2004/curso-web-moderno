@@ -25,6 +25,36 @@
     </nav>
     <div class="pagina"></div>
     <script>
-        // ...
+        function navegarViaAjax(url, seletor, push = true) {
+            if(!url || !seletor) return
+            const elemento = document.querySelector(seletor)
+            fetch(url)
+                .then(resp => resp.text())
+                .then(html => {
+                    // console.log(elemento)
+                    elemento.innerHTML = html
+                    if(push) {
+                        history.pushState({ seletor }, 'Página AJAX', url) // null = título da página
+                    }
+                })
+        }
+
+        document.querySelectorAll('[wm-link]').forEach(link => {
+            const url = link.attributes['wm-link'].value
+            const seletorDestino = link.attributes['wm-destino'].value
+
+            link.onclick = e => {
+                e.preventDefault()
+                navegarViaAjax(url, seletorDestino)
+            }
+        })
+
+        // permite que o nome dos arquivos linguagens.html e series.html apareçam na URL
+        // mesmo sendo uma SPA
+        window.onpopstate = e => {
+            if(e.state) {
+                navegarViaAjax(window.location.href, e.state.seletor, false)
+            }
+        }
     </script>
 </body>
