@@ -266,3 +266,34 @@ readyState	    Holds the status of the XMLHttpRequest. Changes from 0 to 4:
                 2: request received 
                 3: processing request 
                 4: request finished and response is ready
+
+####################################################
+Aula 260 O que é Gulp?
+https://gulpjs.com/
+
+Aula 261 Instalação
+npm i -g gulp-cli
+
+comando gulp necessita de um arquivo gulpfile.js
+
+
+https://babeljs.io/
+
+
+####################################################
+Aula 264 Typescript
+
+http://www.typescriptlang.org/
+
+####################################################
+Aula 266 SASS
+
+https://sass-lang.com/
+
+####################################################
+Aula 272 Gulp
+# Gerar build
+npm run build
+# Executar servidor
+npm start
+
