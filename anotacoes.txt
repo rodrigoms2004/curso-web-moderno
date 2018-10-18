@@ -297,3 +297,11 @@ npm run build
 # Executar servidor
 npm start
 
+####################################################
+Aula 273 Webpack
+Sistema baseado em módulos
+https://webpack.js.org/
+
+
+Regex 101
+https://regex101.com/
