@@ -14,6 +14,20 @@
     <div>2</div>
 
     <script>
-        // ...
+        // esconde elementos div em 5 segundos, reexibe em 5 segundos, desaparece depois
+        // Usar jQuery('div')... ou $('div')... 
+        $('div').hide(5000).show(5000).fadeOut(5000)
+        console.log($('div').get(1))
+        console.log($.isEmptyObject({ nome: null }))    // retorna false
+        console.log(jQuery.inArray(3, [1, 2, 3]))       // retorna -1 se não estiver dentro do array
+                                                        // ou o indice onde o elemento está
+        
+        $.fn.fundoVerde = function () {
+            this.css('background-color', 'green')
+            return this     // retorna o proprio objeto permitindo encadear chamadas
+                            // como a chamada fadeOut(1000) abaixo...
+        }
+
+        $('body').fundoVerde().fadeOut(1000)
     </script>
 </body>

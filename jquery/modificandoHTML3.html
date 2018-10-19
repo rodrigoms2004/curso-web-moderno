@@ -13,13 +13,64 @@
     <div id='conteudo'></div>
 
     <script>
-        const pessoas = [
-            { nome: 'Ana', nota: 9.1 },
-            { nome: 'Bianca', nota: 8.4 },
-            { nome: 'Carlos', nota: 7.6 },
-            { nome: 'Julia', nota: 9.7 }
-        ]
+
         
-        // ...
+        // ... Aula 290 desafio resolvido pelo professor
+
+        // quando o 'documento' estiver pronto execute a callback
+        // $(document).ready(function() {
+        $(function() {
+            const alunos = [
+                { nome: 'Ana', nota: 9.1 },
+                { nome: 'Bianca', nota: 8.4 },
+                { nome: 'Carlos', nota: 7.6 },
+                { nome: 'Julia', nota: 9.7 }
+            ]
+
+            const linhas = alunos.map(aluno => {
+                const tdNome = $('<td>').html(aluno.nome)
+                const tdNota = $('<td>').html(aluno.nota)
+                // retorna a transformação do objeto pessoas em um elemento DOM
+                // return $('<tr>').append(tdNome).append(tdNota)   
+                // ou ...                                                            
+                // return $('<tr>').append([tdNome, tdNota])
+                // ou ...
+                return $('<tr>').append(tdNome, tdNota)
+            })
+
+            const tabela = $('<table>').append(linhas)
+                .css('border', 'solid 5px')
+
+            $('#conteudo').append(tabela)
+        })
+
+
+
+        // ... Desafio EXECUTADO
+        /*
+            criar uma tablea com duas colunas, o nome e a nota dentro da div
+        */
+        // const pessoas = [
+        //     { nome: 'Ana', nota: 9.1 },
+        //     { nome: 'Bianca', nota: 8.4 },
+        //     { nome: 'Carlos', nota: 7.6 },
+        //     { nome: 'Julia', nota: 9.7 }
+        // ]
+        
+        // const cabecalho = ['NOME ', 'NOTA']
+        // $('#conteudo').append('<table><thead id="cabecalho"><tr></tr></thead></table')
+        // $thead = $('#conteudo > table > thead > tr:first')
+        // cabecalho.forEach(function(elem) {
+        //     $thead.append('<th>' + elem + '</th>')
+        // })
+        
+        // $('#conteudo > table').append('<tbody></tbody>')
+        // $tbody = $('#conteudo > table > tbody')
+        // pessoas.forEach(function(elem) {
+        //     $tbody.append('<tr>' + '<td>' + elem.nome + '</td>' + 
+        //                            '<td>' + elem.nota + '</td>' + '</tr>')
+        // })
+        // $('th, tr, td').css('padding', '5px')
+        
     </script>
 </body>

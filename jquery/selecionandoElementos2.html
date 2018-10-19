@@ -75,12 +75,41 @@
                 magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                 consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <span>Dentro do Span</span>
         </section>
     </main>
     <footer>
         <p>Cod3r Ensino</p>
     </footer>
     <script>
-        // ...
+        const comBorda = { 'border': 'solid 8px orange' }
+        const semBorda = { 'border': 'none' }
+
+        $('a[href="#link3"]').parent().css(comBorda).css(semBorda)
+        // seleciona item4, mas volta ao item3 (prev), aplica a borda e depois a remove
+        $('li:last').prev().css(comBorda).css(semBorda)
+        $('a[href="#link3"]').parent().next().css(comBorda).css(semBorda)
+        
+        // aplica borda no link1 e em todos elementos pais
+        $('a[href="#link1"]').parents().css(comBorda).css(semBorda)
+        // aplica até chegar no body, não aplica no body
+        $('a[href="#link1"]').parentsUntil('body').css(comBorda).css(semBorda)
+        
+        // seleciona apenas os filhos, não os netos 
+        $('main').children().css(comBorda).css(semBorda)
+
+        // seleciona 'a' mesmo que não esteja associado diretamente ao Body
+        $('body').find('a').css(comBorda).css(semBorda)
+
+        // usa um elemento da DOM no jQuery
+        const elementoDOM = document.getElementsByClassName('menu')
+        $(elementoDOM).css(comBorda).css(semBorda)
+        
+        // 'e' é um elemento da DOM, por isso usa-se '$(e)'
+        $('main').children().each((i, e) => $(e).css(comBorda).css(semBorda))
+        $('li').each((i, e) => {
+            $(e).css(comBorda).css(semBorda)
+        })
+
     </script>
 </body>
