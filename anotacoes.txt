@@ -305,3 +305,13 @@ https://webpack.js.org/
 
 Regex 101
 https://regex101.com/
+
+####################################################
+Aula 301 Bootstrap
+
+Duas dependencias: jQuery e Popper
+cd bootstrap/exercicios
+npm i --save-dev jquery@3.3.1 -E 
+npm i --save-dev popper.js@1.14.3 -E 
+
+-E = versão exata
