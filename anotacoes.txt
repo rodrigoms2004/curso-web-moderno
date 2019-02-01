@@ -328,3 +328,25 @@ https://getbootstrap.com/
 Aula 304 Tipografia
 
 https://wrapbootstrap.com/
+
+####################################################
+Aulas 325 a 332 - Projeto Galeria
+
+instalar dependencias:
+npm i
+
+executar:
+npm start
+
+####################################################
+Aula 333 REACT
+
+# instalando de forma global
+npm i -g create-react-app
+
+# criando o projeto
+create-react-app exercicios
+
+# acessando e executando
+cd exercicios
+yarn start ou npm start
