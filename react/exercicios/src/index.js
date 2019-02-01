@@ -1,11 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Primeiro from './componentes/Primeiro'
+import BomDia from './componentes/BomDia'
 
 
-ReactDOM.render(<Primeiro />, document.getElementById('root'))
+ReactDOM.render(<BomDia nome="Guilherme" idade={40}/>, document.getElementById('root'))
 
-
-// const elemento = <h1>React 2</h1> 
-// ReactDOM.render(elemento, document.getElementById('root'))
+// ou...
+// ReactDOM.render(<BomDia></BomDia>, document.getElementById('root'))

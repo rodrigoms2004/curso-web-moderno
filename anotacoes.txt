@@ -350,3 +350,9 @@ create-react-app exercicios
 # acessando e executando
 cd exercicios
 yarn start ou npm start
+
+####################################################
+Aula 335
+
+Nomes de componentes criados devem começar com letra MAIUSCULA
+Boa prátiva: arquivos JSX com primeira letra em MAIUSCULA também
