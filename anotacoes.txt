@@ -356,3 +356,11 @@ Aula 335
 
 Nomes de componentes criados devem começar com letra MAIUSCULA
 Boa prátiva: arquivos JSX com primeira letra em MAIUSCULA também
+
+####################################################
+Aula 337
+
+this.props são atributos somente para a leitura
+this.state podem ser modificados
+
+quem manda na renderização é o status do componente e não os componentes da typescriptlang
