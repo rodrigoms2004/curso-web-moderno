@@ -364,3 +364,6 @@ this.props são atributos somente para a leitura
 this.state podem ser modificados
 
 quem manda na renderização é o status do componente e não os componentes da typescriptlang
+
+####################################################
+Aulas 339 e 340 Componentes pai e filho
