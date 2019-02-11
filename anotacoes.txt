@@ -395,6 +395,42 @@ Aula 343 - Variáveis em CSS
 }
 
 ####################################################
-AUal 344 - Componente Display
+Aula 344 - Componente Display
 
 
+####################################################
+Aula 348 - Projeto Backend (JSON Server)
+json server
+
+npm init -y
+npm i --save json-server@0.13.0 -E
+
+# em package.json...
+"scripts": {
+    "start": "json-server --watch db.json --port 3001"
+  },
+
+npm start
+
+####################################################
+Aula 349 - Criando projeto Frontend
+
+create-react-app frontend
+
+
+# dependencias adicionais
+"dependencies": {
+    "axios": "0.18.0",
+    "bootstrap": "4.1.1",
+    "font-awesome": "4.7.0",
+    "react-router": "4.2.0",
+    "react-router-dom": "4.2.2",
+
+cd frontend/
+npm i
+
+####################################################
+Aula 350
+
+
+####################################################
