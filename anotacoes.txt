@@ -445,3 +445,10 @@ https://github.com/neocotic/qrious
 
 npm run qrcode
 
+
+####################################################
+Aula 374 Projeto sales
+
+Só utiliza o CSS do Bootstrap, não vai usar o javascript dele
+
+npm run sales
