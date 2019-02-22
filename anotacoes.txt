@@ -439,5 +439,9 @@ npm run exercicios
 http://localhost:8080/
 
 ####################################################
-Aula 364 Conceitos básicos
+Aula 373 Projeto qrcode
+
+https://github.com/neocotic/qrious
+
+npm run qrcode
 
