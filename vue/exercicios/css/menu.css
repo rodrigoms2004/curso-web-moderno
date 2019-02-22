@@ -21,7 +21,7 @@ body {
     min-width: 198px;
 }
 
-.menu-principal a {
+.menu-principal a,p {
     display: block;
     padding: 10px 0px;
     text-decoration: none;
