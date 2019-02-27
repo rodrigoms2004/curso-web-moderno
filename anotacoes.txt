@@ -452,3 +452,15 @@ Aula 374 Projeto sales
 Só utiliza o CSS do Bootstrap, não vai usar o javascript dele
 
 npm run sales
+
+####################################################
+Aula 376 Projeto Calculadora com VueJS
+
+# instalando o Vue
+npm i -g @vue/cli
+
+# Plugin para VS Code: Vetur, monitora arquivo .vue
+vue create calculator
+
+ cd calculator
+ npm run serve
