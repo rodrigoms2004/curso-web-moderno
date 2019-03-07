@@ -464,3 +464,21 @@ vue create calculator
 
  cd calculator
  npm run serve
+
+####################################################
+Aula 382 a  386 Problema de Monty Hall
+
+# instalando o Vue
+npm i -g @vue/cli
+
+cd vue
+vue create montyhall
+cd montyhall
+npm run serve
+
+https://uigradients.com
+
+
+####################################################
+Aula 387 Banco Relacional
+
