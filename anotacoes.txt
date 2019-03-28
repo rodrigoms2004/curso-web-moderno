@@ -601,3 +601,88 @@ https://www.studytonight.com/dbms/tcl-command.php
 
 ####################################################
 Aula 393 CRIAR SCHEMA & PLUGIN VSCode
+
+vscode-database
+
+ctrl+shift+p
+digite database
+
+BUG DO PLUG IN: não volta colunas com mesmo nome, mesmo em diferentes tabelas
+
+####################################################
+Aula 394 Visão Geral do Modelo
+
+Tabelas e relacionamentos 
+
+Estados 1---n Cidades 1---1 Prefeitos
+                1
+                |
+                n
+            cid_emp
+                n
+                |
+                1
+            Empresas
+
+Cidades n---m Empresas
+
+####################################################
+Aula 405 Tipos de JOINs
+
+
+                |---------------------------|
+|-----------------------|                 B |
+|A              |       |                   |
+|   Cidades     |   C   |       Empresas    |
+|               |       |                   |
+|-----------------------|                   |
+                |---------------------------|  
+
+C       =   INNER
+A, B    = OUTER
+
+A = Cidades que não estão associadas a nenhuma empresa
+B = Empresas que não estão associadas a nenhuma cidade
+C = Empresas e Cidades associadas
+
+# ---------------------------------------------------------
+# LEFT JOIN ou LEFT OUTER JOIN
+# Indo de A para B:
+# LEFT JOIN   =   C + A
+
+                |---------------------------|
+|-----------------------| B                 |
+|A #############|#######|                   |
+|## Cidades ####|## C ##|       Empresas    |
+|###############|#######|                   |
+|-----------------------|                   |
+                |---------------------------|  
+
+# ---------------------------------------------------------
+# RIGHT JOIN ou RIGHT OUTER JOIN
+# Indo de A para B:
+# RIGHT JOIN  =   C + B 
+
+                |---------------------------|
+|-----------------------|################ B |
+|A              |#######|###################|
+|   Cidades     |## C ##|###### Empresas ###|
+|               |#######|###################|
+|-----------------------|###################|
+                |---------------------------|  
+
+# ---------------------------------------------------------
+# FULL JOIN (NÃO SUPORTADA PELO MYSQL, USAR UNION)
+# Indo de A para B:
+# FULL JOIN  =   A + C + B  =   LEFT JOIN + RIGHT JOIN
+
+                |---------------------------|
+|-----------------------|################ B |
+|A #############|#######|###################|
+|## Cidades ####|## C ##|###### Empresas ###|
+|###############|#######|###################|
+|-----------------------|###################|
+                |---------------------------|  
+
+####################################################
+Aula 412 Instalação Mongo DB
