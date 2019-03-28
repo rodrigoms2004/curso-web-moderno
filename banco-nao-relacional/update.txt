@@ -1,0 +1,75 @@
+
+# adiciona o campo populacao ao registro do estado de SP
+db.estados.update({sigla: "SP"},{$set: {populacao: 45340000}})
+{   "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845df"),
+	"nome" : "São Paulo",
+	"sigla" : "SP",
+	"regiao" : "Sudeste",
+	"cidades" : [
+    ...
+	],
+	"populacao" : 45340000 }
+
+# adiciona o array cidades com o documento de nome Sergipe
+db.estados.update({sigla: "AL"},{$set: {cidades: [{nome: "Sergipe"}]}})
+{   "_id" : ObjectId("5c9d1ce85a0ab8ad7b1845d1"),
+	"nome" : "Alagoas",
+	"sigla" : "AL",
+	"regiao" : "Nordeste",
+	"populacao" : 3322000,
+	"cidades" : [ { "nome" : "Sergipe" } ] }
+
+# adiciona (Array.push) a cidade de Santos no array de cidades
+db.estados.update(
+    {sigla: "SP"},
+    {$push: {cidades: {nome: "Santos", populacao: 433966}}}
+)
+{   "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845df"),
+	"nome" : "São Paulo",
+	"sigla" : "SP",
+	"regiao" : "Sudeste",
+	"cidades" : [
+	...
+		{
+			"_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845de"),
+			"nome" : "Sorocaba",
+			"distanciaCapital" : 87,
+			"populacao" : 644919
+		},
+		{
+			"nome" : "Santos",
+			"populacao" : 433966
+		}
+	],
+	"populacao" : 45340000 }
+
+# retorna o nome de todos os estados com o campo populacao, sem exibir o _id
+db.estados.find({populacao: {$exists: true}}, {_id: 0, nome: 1})
+{ "nome" : "Alagoas" }
+{ "nome" : "São Paulo" }
+
+
+# adiciona o campo 'povo' na cidade de niteroi
+db.estados.update(
+	{ sigla: "RJ", "cidades.nome": "Niterói" }, 
+	{ 
+		$set: { "cidades.$.povo": "carioca" } 
+	})
+
+db.estados.find({"cidades.povo": {$exists: true}}).pretty()
+{
+	"_id" : ObjectId("5c9d3ae55a0ab8ad7b1845e7"),
+	"nome" : "Rio de Janeiro",
+	"sigla" : "RJ",
+	"regiao" : "Sudeste",
+	"cidades" : [
+		{
+			"nome" : "Niterói",
+			"area" : 133.9,
+			"populacao" : 487562,
+			"povo" : "carioca"
+		}
+	]
+}
+
+

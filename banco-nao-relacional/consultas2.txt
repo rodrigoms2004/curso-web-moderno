@@ -1,0 +1,34 @@
+# retorna o nome do estado e o nome das cidades associadas a 
+db.estados.aggregate([
+    { $project: {nome: 1, "cidades.nome": 1, _id: 0} }
+])
+{ "nome" : "Acre" }
+{ "nome" : "Alagoas" }
+{ "nome" : "Rio de Janeiro", "cidades" : [ { "nome" : "Niterói" } ] }
+{ "nome" : "São Paulo", "cidades" : [ { "nome" : "Campinas" }, { "nome" : "Garulhos" }, { "nome" : "Sorocaba" } ] }
+
+
+# exibe o campo calculado 'populacao', fazendo a soma dos campos 'cidades.populacao', mostrando populacao por estado 
+# exibindo as siglas
+db.estados.aggregate([
+    { $project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id: 0} },
+])
+{ "sigla" : "AC", "populacao" : 0 }
+{ "sigla" : "AL", "populacao" : 0 }
+{ "sigla" : "RJ", "populacao" : 487562 }
+{ "sigla" : "SP", "populacao" : 3050919 }
+
+# o mesmo acima, mas faz o "group by" fazendo a somatoria do campo 'populacao' e adiciona no campo 'populacao'
+db.estados.aggregate([
+    { $project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id: 0} },
+    { $group: {_id: null, populacaoTotal: {$sum: "$populacao" }} },
+])
+{ "_id" : null, "populacaoTotal" : 3538481 }
+
+# desta vez removendo o id inexistente (null) de 'populacaoTotal'
+db.estados.aggregate([
+    { $project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id: 0} },
+    { $group: {_id: null, populacaoTotal: {$sum: "$populacao" }} },
+    { $project: { _id: 0, populacaoTotal: 1 } },
+])
+{ "populacaoTotal" : 3538481 }

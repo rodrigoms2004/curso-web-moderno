@@ -1,0 +1,72 @@
+
+db.estados.find()
+{ "_id" : ObjectId("5c9d1cdf5a0ab8ad7b1845d0"), "nome" : "Acre", "sigla" : "AC", "regiao" : "Norte" }
+{ "_id" : ObjectId("5c9d1ce85a0ab8ad7b1845d1"), "nome" : "Alagoas", "sigla" : "AL", "regiao" : "Nordeste", "populacao" : 3322000 }
+{ "_id" : ObjectId("5c9d1cf45a0ab8ad7b1845d2"), "nome" : "Rio de Janeiro", "sigla" : "RJ", "regiao" : "Sudeste", "cidades" : [ { "nome" : "Niterói", "area" : 133.9, "populacao" : 487562 } ] }
+{ "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845df"), "nome" : "São Paulo", "sigla" : "SP", "regiao" : "Sudeste", "cidades" : [ { "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845dc"), "nome" : "Campinas", "area" : 795.7, "prefeito" : "Jonas Donizette", "populacao" : 1081000 }, { "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845dd"), "nome" : "Garulhos", "populacao" : 1325000 }, { "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845de"), "nome" : "Sorocaba", "distanciaCapital" : 87, "populacao" : 644919 } ] }
+ 
+
+db.estados.find().pretty()
+db.estados.findOne()
+db.estados.findOne({sigla: "RJ"})
+
+# estados com sigla RJ ou AC
+db.estados.find({$or: [{sigla: "RJ"}, {sigla: "AC"}]}).pretty()
+
+# busca estados que possuem o atriuto populacao
+db.estados.find({populacao: {$exists: true}}).pretty()
+
+# pula o primeiro registro e busca somente dois registros
+db.estados.find().skip(1).limit(2)
+
+# quantidade de registros
+db.estados.count()
+
+# busca estados com sigla SP, retornando somente os campos nome, sigla, mas sem mostrar o ID
+db.estados.find({sigla: "SP"}, {nome: 1, sigla: 1, _id: 0})
+
+# busca estados com sigla SP, retornando os nomes das cidades e a sua sigla sem mostrar o ID
+db.estados.find({sigla: "SP"}, {"cidades.nome": 1, _id: 0})
+
+# https://techbrij.com/mongodb-query-select-filter-child-nested-array
+# tras somente as cidades
+db.estados.find({}, {_id:0, cidades: 1 } ).pretty()
+
+# descontroi o array de cidades e exibe campos nome e populacao
+db.estados.aggregate([
+    { $unwind: '$cidades' },
+    { $project: { _id:0, nome: '$cidades.nome', populacao: '$cidades.populacao' } }
+    ])
+{ "nome" : "Niterói", "populacao" : 487562 }
+{ "nome" : "Campinas", "populacao" : 1081000 }
+{ "nome" : "Garulhos", "populacao" : 1325000 }
+{ "nome" : "Sorocaba", "populacao" : 644919 }
+
+# descontroi o array de cidades
+db.estados.aggregate([{ $unwind: '$cidades'}]).pretty()
+{ "_id" : ObjectId("5c9d1cf45a0ab8ad7b1845d2"), "nome" : "Rio de Janeiro", "sigla" : "RJ", "regiao" : "Sudeste", "cidades" : { "nome" : "Niterói", "area" : 133.9, "populacao" : 487562 } }
+{ "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845df"), "nome" : "São Paulo", "sigla" : "SP", "regiao" : "Sudeste", "cidades" : { "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845dc"), "nome" : "Campinas", "area" : 795.7, "prefeito" : "Jonas Donizette", "populacao" : 1081000 } }
+{ "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845df"), "nome" : "São Paulo", "sigla" : "SP", "regiao" : "Sudeste", "cidades" : { "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845dd"), "nome" : "Garulhos", "populacao" : 1325000 } }
+{ "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845df"), "nome" : "São Paulo", "sigla" : "SP", "regiao" : "Sudeste", "cidades" : { "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845de"), "nome" : "Sorocaba", "distanciaCapital" : 87, "populacao" : 644919 } }
+ 
+
+# descontroi o array de cidades e exibe campos nome e populacao de Campinas
+db.estados.aggregate([
+    { $unwind: '$cidades' },
+    { $match: { 'cidades.nome': "Campinas" } },
+    { $project: { _id:0, nome: '$cidades.nome', populacao: '$cidades.populacao' } }
+    ])
+{ "nome" : "Campinas", "populacao" : 1081000 }
+
+# descontroi o array de cidades e exibe campos nome e populacao de Campinas e Sorocaba
+db.estados.aggregate([
+    { $unwind: '$cidades' },
+    { $match: { 
+        $or: [ 
+            {'cidades.nome': "Campinas"}, {'cidades.nome': "Sorocaba"} 
+            ] } },
+    { $project: { _id:0, nome: '$cidades.nome', populacao: '$cidades.populacao' } }
+    ])
+{ "nome" : "Campinas", "populacao" : 1081000 }
+{ "nome" : "Sorocaba", "populacao" : 644919 }
+

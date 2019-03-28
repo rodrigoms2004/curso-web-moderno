@@ -1,0 +1,75 @@
+# insere novamente o estado do RJ, com id em Niteroi
+db.estados.insert({
+    nome: "Rio de Janeiro",
+    sigla: "RJ",
+    regiao: "Sudeste",
+    cidades: [{
+        _id: ObjectId(),
+        nome: "Niterói",
+        area: 133.9,
+        populacao: 487562
+    }]
+})
+
+# se esquecer de colocar o id, use:
+db.estados.update(
+	{ sigla: "RJ", "cidades.nome": "Niterói" }, 
+	{ 
+		$set: { "cidades.$._id": ObjectId() } 
+	})
+
+####################################################
+
+# obtém o _id do estado de SP
+> db.estados.find({sigla: "SP"}, {_id:1}).pretty()
+{ "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845df") }
+
+# cria a collection empresas inserindo o Bradesco 
+# e associando esse documento ao estado de SP
+db.empresas.insert({
+    nome: "Bradesco",
+    estadoId: ObjectId("5c9d1e4e5a0ab8ad7b1845df")
+})
+    WriteResult({ "nInserted" : 1 })
+
+$ verifica a inserção
+db.empresas.find().pretty()
+{
+	"_id" : ObjectId("5c9d38d15a0ab8ad7b1845e5"),
+	"nome" : "Bradesco",
+	"estadoId" : ObjectId("5c9d1e4e5a0ab8ad7b1845df")
+}
+
+# obtém o id da cidade de Sorocaba, para consultas de multiplas cidades
+# favor ver o arquivo 'banco-nao-relacional/consultas1.txt'
+db.estados.aggregate([
+    { $unwind: '$cidades' },
+    { 
+        $match: {  'cidades.nome': "Sorocaba" } 
+    },
+    { $project: { _id: 0, _id: '$cidades._id' } }
+    ])
+
+{ "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845de") }
+
+# Insere a empresa Vale associada a cidade de Sorocaba
+db.empresas.insert({
+    nome: "Vale",
+    cidadeId: ObjectId("5c9d1e4e5a0ab8ad7b1845de")
+})
+    WriteResult({ "nInserted" : 1 })
+
+# Verifica a inserção
+# Bradesco relacionada ao ObjectId do estado de SP
+# Vale relacionada ao ObjectId da cidade de Sorocaba
+db.empresas.find().pretty()
+{
+	"_id" : ObjectId("5c9d38d15a0ab8ad7b1845e5"),
+	"nome" : "Bradesco",
+	"estadoId" : ObjectId("5c9d1e4e5a0ab8ad7b1845df")
+}
+{
+	"_id" : ObjectId("5c9d3a685a0ab8ad7b1845e6"),
+	"nome" : "Vale",
+	"cidadeId" : ObjectId("5c9d1e4e5a0ab8ad7b1845de")
+}

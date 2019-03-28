@@ -686,3 +686,49 @@ C = Empresas e Cidades associadas
 
 ####################################################
 Aula 412 Instalação Mongo DB
+
+####################################################
+Aula 413 NoSQL not only SQL
+
+Grupos de bancos baseados em:
+    chave/valor, ex: REDIS
+    document: Mongo (JSON)
+    grafo: Neo4J
+    column: Cassandra, Bigtable
+
+GRAPHQL - modelar API REST para grafo
+
+Escalonamento Vertical vs Horizontal
+
+Vertical:   atualizar memória, processador, disco e etc de uma máquina
+Horizontal: separar dados em multiplas instancias (várias máquinas diferentes)
+
+MongoDB -> Baseado em JSON
+    DB DataBase
+        Collections ("tabelas")
+            Docs ("tuplas/linhas")
+    Sem schema
+    API (não tem SQL)
+
+####################################################
+Aula 414 Relacional e Não Relacional
+
+
+####################################################
+Aula 420 Padrão Pipe and Filters
+
+$match  "where" do MongoDB
+$project quais campos vão aparecer
+$unwind "desenrolar", exemplo: um estado com três cidades, aplicado $unwind exibe um estado e uma cidade três vezes
+
+https://docs.mongodb.com/manual/reference/operator/aggregation/
+
+https://techbrij.com/mongodb-query-select-filter-child-nested-array
+
+####################################################
+Aula 427 Consulta com Lookup #02
+
+Atualiza Mongo $addFields só funciona em versões >= 3.4
+
+####################################################
+Aula 428 Express Introdução

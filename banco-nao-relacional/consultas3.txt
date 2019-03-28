@@ -1,0 +1,43 @@
+
+# busca a cidade de Sorocaba, desconstroi o array de cidades com $unwind,
+# busca novamente por Sorocaba e exibe somente o _id da cidade
+db.estados.aggregate([
+    { $match: {"cidades.nome": "Sorocaba"} },
+    { $unwind: "$cidades"},
+    { $match: {"cidades.nome": "Sorocaba"} },
+    { $project: {_id: "$cidades._id"} }
+]).pretty()
+{ "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845de") }
+
+
+# traz o documento onde está contido o array com a cidade de Sorocaba
+db.estados.aggregate([
+    { $match: {"cidades.nome": "Sorocaba"} },
+])
+{ "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845df"), "nome" : "São Paulo", "sigla" : "SP", "regiao" : "Sudeste", "cidades" : [ { "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845dc"), "nome" : "Campinas", "area" : 795.7, "prefeito" : "Jonas Donizette", "populacao" : 1081000 }, { "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845dd"), "nome" : "Garulhos", "populacao" : 1325000 }, { "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845de"), "nome" : "Sorocaba", "distanciaCapital" : 87, "populacao" : 644919 } ] }
+
+# agora transforma cada item do array cidades em um documento do estado de SP
+db.estados.aggregate([
+    { $match: {"cidades.nome": "Sorocaba"} },
+    { $unwind: "$cidades"},
+])
+{ "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845df"), "nome" : "São Paulo", "sigla" : "SP", "regiao" : "Sudeste", "cidades" : { "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845dc"), "nome" : "Campinas", "area" : 795.7, "prefeito" : "Jonas Donizette", "populacao" : 1081000 } }
+{ "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845df"), "nome" : "São Paulo", "sigla" : "SP", "regiao" : "Sudeste", "cidades" : { "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845dd"), "nome" : "Garulhos", "populacao" : 1325000 } }
+{ "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845df"), "nome" : "São Paulo", "sigla" : "SP", "regiao" : "Sudeste", "cidades" : { "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845de"), "nome" : "Sorocaba", "distanciaCapital" : 87, "populacao" : 644919 } }
+
+# faz a busca pela cidade de sorocaba 
+db.estados.aggregate([
+    { $match: {"cidades.nome": "Sorocaba"} },
+    { $unwind: "$cidades"},
+    { $match: {"cidades.nome": "Sorocaba"} },
+])
+{ "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845df"), "nome" : "São Paulo", "sigla" : "SP", "regiao" : "Sudeste", "cidades" : { "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845de"), "nome" : "Sorocaba", "distanciaCapital" : 87, "populacao" : 644919 } }
+
+# por fim mostra ("projeta") somente o id da cidade, neste caso exibe o nome também
+db.estados.aggregate([
+    { $match: {"cidades.nome": "Sorocaba"} },
+    { $unwind: "$cidades"},
+    { $match: {"cidades.nome": "Sorocaba"} },
+    { $project: {_id: "$cidades._id", nome: "$cidades.nome"} }
+]).pretty()
+{ "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845de"), "nome" : "Sorocaba" }

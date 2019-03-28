@@ -1,0 +1,30 @@
+# retorna 4 registros
+db.estados.count()
+
+# remove o estado do Acre
+db.estados.remove({sigla: "AC"})
+    WriteResult({ "nRemoved" : 1 })
+
+# retorna 3 registros
+db.estados.count()
+db.estados.find()
+
+# remove o primeiro estado com campo de populacao, no caso Alagoas
+db.estados.remove({populacao: {$exists: true}}, 1)
+    WriteResult({ "nRemoved" : 1 })
+#retorna 2 registros
+db.estados.count()
+db.estados.find()
+
+# adiciona o campo populacao ao estado do Rio de Janeiro
+# com 16.720.000 de pessoas
+db.estados.update({sigla: "RJ"}, {$set: {populacao: 16720000}})
+    WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+# remove todos os estados com população inferior a 
+# 20.000.000 de pessoas
+db.estados.remove({populacao: {$lt: 20000000}})
+    WriteResult({ "nRemoved" : 1 })
+
+# encontra somente um registro, o estado de SP
+db.estados.find()
