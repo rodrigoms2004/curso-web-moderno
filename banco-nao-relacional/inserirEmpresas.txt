@@ -22,13 +22,13 @@ db.estados.update(
 
 # obtém o _id do estado de SP
 > db.estados.find({sigla: "SP"}, {_id:1}).pretty()
-{ "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845df") }
+{ "_id" : ObjectId("5c9e5d961237a764858f149e") }
 
 # cria a collection empresas inserindo o Bradesco 
 # e associando esse documento ao estado de SP
 db.empresas.insert({
     nome: "Bradesco",
-    estadoId: ObjectId("5c9d1e4e5a0ab8ad7b1845df")
+    estadoId: ObjectId("5c9e5d961237a764858f149e")
 })
     WriteResult({ "nInserted" : 1 })
 
@@ -50,12 +50,12 @@ db.estados.aggregate([
     { $project: { _id: 0, _id: '$cidades._id' } }
     ])
 
-{ "_id" : ObjectId("5c9d1e4e5a0ab8ad7b1845de") }
+{ "_id" : ObjectId("5c9e5d961237a764858f149d") }
 
 # Insere a empresa Vale associada a cidade de Sorocaba
 db.empresas.insert({
     nome: "Vale",
-    cidadeId: ObjectId("5c9d1e4e5a0ab8ad7b1845de")
+    cidadeId: ObjectId("5c9e5d961237a764858f149d")
 })
     WriteResult({ "nInserted" : 1 })
 

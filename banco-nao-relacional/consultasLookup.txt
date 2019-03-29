@@ -157,9 +157,28 @@ db.empresas.aggregate([
     }},
     {$unwind: "$estado"},
     {$unwind: "$estado.cidades"},
-    {$addFields: { mesmaCidade: {$cmp: ["estado.cidades._id", "$cidadeId"]} }},
+    {$addFields: { mesmaCidade: {$cmp: ["$estado.cidades._id", "$cidadeId"]} }},
     {$match: { mesmaCidade: 0 }},
 ]).pretty()
+
+{
+	"_id" : ObjectId("5c9e5e0c1237a764858f14a1"),
+	"nome" : "Vale",
+	"cidadeId" : ObjectId("5c9e5d961237a764858f149d"),
+	"estado" : {
+		"_id" : ObjectId("5c9e5d961237a764858f149e"),
+		"nome" : "São Paulo",
+		"sigla" : "SP",
+		"regiao" : "Sudeste",
+		"cidades" : {
+			"_id" : ObjectId("5c9e5d961237a764858f149d"),
+			"nome" : "Sorocaba",
+			"distanciaCapital" : 87,
+			"populacao" : 644919
+		}
+	},
+	"mesmaCidade" : 0
+}
 
 
 # https://docs.mongodb.com/manual/reference/operator/aggregation/cmp/
@@ -167,5 +186,3 @@ db.empresas.aggregate([
 #    -1 if the first value is less than the second.
 #    1 if the first value is greater than the second.
 #    0 if the two values are equivalent.
-
-{ $match: {"estado.cidades._id": "$cidadeId"} },
