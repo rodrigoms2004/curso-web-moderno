@@ -732,3 +732,48 @@ Atualiza Mongo $addFields só funciona em versões >= 3.4
 
 ####################################################
 Aula 428 Express Introdução
+
+
+####################################################
+Aula 429 - Criando o Projeto
+
+
+####################################################
+Aula 430 - Config
+
+# permite variar a parte minory e fix (17 e 1)
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+
+# varia somente o fix (1)
+  "dependencies": {
+    "express": "~4.17.1"
+  }
+
+# instala exatamente a versão 4.17.1
+  "dependencies": {
+    "express": "4.17.1"
+  }
+
+####################################################
+Aula 431 - PM2
+
+ npm run production
+
+ npm install pm2 --save
+
+ npm install pm2 -g
+
+pm2 monit
+
+# mata a instancia do pm2
+pm2 kill
+
+####################################################
+Aula 432 - requisição
+
+O verbo OPTION devolve os metodos suportados pela URL, no POSTMAN
+
+
+####################################################
